@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from routers import users, authentication
-import models
-from config.database import engine
+from interface.routes import users, authentication
+from infrastructure.orm.sqlalchemy import models
+from infrastructure.database.database import engine
 
 app = FastAPI()
 
