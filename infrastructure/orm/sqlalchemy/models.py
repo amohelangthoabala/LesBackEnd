@@ -13,13 +13,12 @@ class User(Base):
     status = Column(String)
     password = Column(String)
 
+    messages = relationship("Message", back_populates="sender")
     initiator = relationship("Chat", backref="Initiator", lazy="dynamic", foreign_keys="Chat.initiator_id")
     target = relationship("Chat", backref="Target", lazy="dynamic", foreign_keys="Chat.target_id")
 
-    messages = relationship("Message", back_populates="sender")
-
 class Chat(Base):
-    __table__ = "chats"
+    __tablename__ = "chats"
 
     id = Column(Integer, primary_key=True, index=True)
     
@@ -27,10 +26,11 @@ class Chat(Base):
     target_id = Column(Integer, ForeignKey('users.id'))
 
     messages = relationship("Message", back_populates="chat")
-    
+    # initiator = relationship("User", backref="Initiator", lazy="dynamic", foreign_keys="User.id")
+    # target = relationship("User", backref="Target", lazy="dynamic", foreign_keys="User.id")
 
 class Message(Base):
-    __table__ = "messages"
+    __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True, index=True)
 
