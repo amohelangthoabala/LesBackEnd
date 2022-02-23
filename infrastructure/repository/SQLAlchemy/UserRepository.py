@@ -34,7 +34,7 @@ class UserRepositoryImpl(UserRepository):
 
         return user
 
-    def update(self, id):
+    def update(self, id, request):
         pass
 
 def create_user(request: schemas.User, db: Session):

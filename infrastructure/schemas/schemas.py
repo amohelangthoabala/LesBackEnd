@@ -27,3 +27,16 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+
+class Message(BaseModel):
+
+    message: str
+    status: str
+    created_date: str
+
+    sender: User
+
+class Chat(BaseModel):
+
+    messages = List[Message]
