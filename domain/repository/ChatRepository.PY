@@ -1,9 +1,13 @@
 from abc import ABC, abstractmethod
 
-class UserRepository(ABC):
+class ChatRepository(ABC):
 
     @abstractmethod
     def create(self, request):
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_user_chats(self, user_id):
         raise NotImplementedError
 
     @abstractmethod
@@ -11,15 +15,9 @@ class UserRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def get_by_email(self, email):
-        raise NotImplementedError
-    
-    @abstractmethod
     def delete(self, id):
         raise NotImplementedError
 
     @abstractmethod
-    def update(self, id, request):
+    def update(self, id):
         raise NotImplementedError
-
-    

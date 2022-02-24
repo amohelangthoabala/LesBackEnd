@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 from jose import JWTError, jwt
+from datetime import datetime
 
 class User(BaseModel):
     name: str
@@ -27,3 +28,30 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+
+
+class Message(BaseModel):
+
+    message: str
+    status: str
+    #created_date: Optional[datetime] = datetime.utcnow
+    # chat_id: int
+    # sender_id: int
+
+    class Config():
+        orm_mode = True
+
+
+class Chat(BaseModel):
+
+    initiator: User
+    target: User
+    messages = List[Message]
+
+    class Config():
+        orm_mode = True
+
+class ChatRequest(BaseModel):
+
+    initiator_id: int
+    target_id: int
