@@ -56,7 +56,7 @@ manager = WebsocketConnectionManager()
 
 
 @app.get('/')
-def home():
+async def home():
     return HTMLResponse(html)
 
 @app.websocket("/websocket/{client_id}")
