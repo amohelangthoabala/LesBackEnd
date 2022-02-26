@@ -9,5 +9,5 @@ class HashRepositoryImpl(HashRepository):
     def encrypt(self, password:str):
         return self.pwd_cxt.hash(password)
 
-    def verify(self, hashed_password, plain_password):
+    def verify(self, plain_password: str, hashed_password: str):
         return self.pwd_cxt.verify(plain_password, hashed_password)

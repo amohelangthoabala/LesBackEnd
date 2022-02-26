@@ -11,7 +11,7 @@ class User(BaseModel):
 class ShowUser(BaseModel):
     name: str
     email: str
-    
+    password: str
     # blogs: List[Blog] = []
 
     class Config():

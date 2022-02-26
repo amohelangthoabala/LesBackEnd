@@ -9,7 +9,7 @@ app = FastAPI()
 print("app strating...")
 
 models.Base.metadata.create_all(engine)
-# #models.Base.metadata.drop_all(engine)
+#models.Base.metadata.drop_all(engine)
 
 from fastapi.responses import HTMLResponse
 
