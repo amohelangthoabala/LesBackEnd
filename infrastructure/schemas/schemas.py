@@ -11,7 +11,6 @@ class User(BaseModel):
 class ShowUser(BaseModel):
     name: str
     email: str
-    password: str
     # blogs: List[Blog] = []
 
     class Config():
@@ -34,7 +33,7 @@ class Message(BaseModel):
 
     message: str
     status: str
-    #created_date: Optional[datetime] = datetime.utcnow
+    created_date: Optional[datetime]
     # chat_id: int
     # sender_id: int
 
@@ -44,8 +43,8 @@ class Message(BaseModel):
 
 class Chat(BaseModel):
 
-    initiator: User
-    target: User
+    initiator: ShowUser
+    target: ShowUser
     messages = List[Message]
 
     class Config():
@@ -55,3 +54,10 @@ class ChatRequest(BaseModel):
 
     initiator_id: int
     target_id: int
+
+class CreateMessage(BaseModel):
+    message: str
+    status: str
+    chat: Chat
+    sender: ShowUser
+    

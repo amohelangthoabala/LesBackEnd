@@ -15,7 +15,7 @@ router = APIRouter(
 get_db = database.get_db
 
 @router.post('/', response_model= schemas.Message)
-def create_message(request: schemas.Message, db: Session = Depends(get_db)):
+def create_message(request: schemas.CreateMessage, db: Session = Depends(get_db)):
     messageRepository = mri(db)
 
     return MessageServices.create_message(request, messageRepository)

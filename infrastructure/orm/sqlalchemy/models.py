@@ -12,6 +12,7 @@ class User(Base):
     email = Column(String)
     status = Column(String)
     password = Column(String)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
     messages = relationship("Message", back_populates="sender")
     initiator = relationship("Chat", backref="Initiator", lazy="dynamic", foreign_keys="Chat.initiator_id")
@@ -24,6 +25,9 @@ class Chat(Base):
     
     initiator_id = Column(Integer, ForeignKey('users.id'))
     target_id = Column(Integer, ForeignKey('users.id'))
+    
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_date = Column(DateTime, default=datetime.datetime.utcnow)
 
     messages = relationship("Message", back_populates="chat")
     # initiator = relationship("User", backref="Initiator", lazy="dynamic", foreign_keys="User.id")
@@ -37,6 +41,7 @@ class Message(Base):
     message = Column(String)
     status = Column(String)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_date = Column(DateTime, default=datetime.datetime.utcnow)
     
     chat_id = Column(Integer, ForeignKey('chats.id'))
     sender_id = Column(Integer, ForeignKey('users.id'))

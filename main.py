@@ -1,4 +1,3 @@
-print("import dependencies...")
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -9,10 +8,9 @@ from infrastructure.websocket.WebsocketConnectionManager import WebsocketConnect
 
 app = FastAPI()
 
-app.mount("/", StaticFiles(directory="interface/static",html = True), name="static")
 
 models.Base.metadata.create_all(engine)
-#models.Base.metadata.drop_all(engine)
+# models.Base.metadata.drop_all(engine)
 
 from fastapi.responses import HTMLResponse
 
@@ -21,9 +19,6 @@ from fastapi.responses import HTMLResponse
 manager = WebsocketConnectionManager()
 
 
-# @app.get('/')
-# async def home():
-#     return HTMLResponse(html)
 
 @app.websocket("/websocket/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
@@ -41,6 +36,7 @@ app.include_router(authentication.router)
 app.include_router(users.router)
 app.include_router(chat.router)
 app.include_router(message.router)
+app.mount("/", StaticFiles(directory="interface/static",html = True), name="static")
+
 # app.include_router(websocket.router)
 
-print("running...")
