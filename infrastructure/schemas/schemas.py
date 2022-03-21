@@ -43,8 +43,8 @@ class Message(BaseModel):
 
 class Chat(BaseModel):
 
-    initiator: ShowUser
-    target: ShowUser
+    initiator_id: int
+    target_id: int
     messages = List[Message]
 
     class Config():
@@ -58,6 +58,7 @@ class ChatRequest(BaseModel):
 class CreateMessage(BaseModel):
     message: str
     status: str
-    chat: Chat
+    # chat: Chat
     sender: ShowUser
+    target: ShowUser 
     

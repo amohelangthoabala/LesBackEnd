@@ -21,6 +21,9 @@ class ChatRepositoryImpl(ChatRepository):
 
     def get_by_id(self, id):
         return self.db.query(self.chat).filter(self.chat.id == id).first()
+    
+    def get_chat(self, initiator_id, target_id):
+        return self.db.query(self.chat).filter((self.chat.initiator_id == initiator_id) | (self.chat.target_id == target_id)).filter((self.chat.initiator_id == target_id) | (self.chat.target_id == initiator_id)).first()
 
     def get_user_chats(self, user_id):
         pass

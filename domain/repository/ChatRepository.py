@@ -13,6 +13,10 @@ class ChatRepository(ABC):
     @abstractmethod
     def get_by_id(self, id):
         raise NotImplementedError
+    
+    @abstractmethod
+    def get_chat(self, initiator_id, target_id):
+        raise NotImplementedError
 
     @abstractmethod
     def delete(self, id):

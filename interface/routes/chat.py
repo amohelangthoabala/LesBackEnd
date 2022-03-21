@@ -20,7 +20,7 @@ def create_chat(request: schemas.ChatRequest, db: Session = Depends(get_db)):
 
     return ChatServices.create_chat(request, chatRepository)
 
-@router.get('/{id}')
+@router.get('/{id}', response_model=schemas.Chat)
 def get_by_id(id: int, db: Session = Depends(get_db)):
     chatRepository = cri(db)
 
