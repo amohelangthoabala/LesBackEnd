@@ -126,7 +126,7 @@
                         
                         <!-- alert -->
                         <div class="alert alert-primary d-flex justify-content-start align-items-center" role="alert"> <span class="fa fa-info mr-4"></span>
-                            <p class="m-0"> This documentation is always evolving. If you've not been here for a while, perhaps check out the This documentation is always evolving.This is a primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like. </p>
+                            <p class="m-0"> This application is always evolving. If you've not been here for a while, perhaps check out the API to see what's new <a href="/redoc" class="alert-link">Click me</a>. Give it a click :). </p>
                         </div>
                         
                         <!-- heading -->
@@ -151,6 +151,7 @@
                         <p>
                             The project file arranged based on the clean architeture. 
                         </p>
+                       
                         <p>
                             The main purpose of Clean Architecture is to allow the business to adapt to changing technology and interfaces.
                             While the internet might move from desktop to mobile, or from mobile to virtual assistant, the core business remains the same. 
@@ -166,11 +167,46 @@
                         <h4 class="mb-2">The layers of clean architecture</h4>
 
                         <ol>
-                            <li><strong>The domain layer: </strong> The domain layer, houses the overarching business rules, logic and needs that form the foundation for the application's intended role and purpose. </li>
+                            <li><strong>The domain layer: </strong> The abstration layer, which houses the overarching business rules, logic and needs that form the foundation for the application's intended role and purpose. </li>
                             <li><strong>The application layer</strong>, contains the rules and logic that relate specifically to the application's design and behavior. </li>
-                            <li><strong >The infrastructure layer: </strong> The infrastructure layer serves up all necessary details pertaining to the particular web frameworks or database models in use. </li>
+                            <li><strong >The infrastructure layer: </strong> The implementation layer, which serves up all necessary details pertaining to the particular web frameworks or database models in use. </li>
                             <li><strong >The interface layer: </strong> This layer serves as the presentation layer of the application </li>
                         </ol>
+
+                        <pre>
+                            <code>
+                                .
+                                ├── app
+                                │   ├── __init__.py
+                                │   ├── main.py
+                                │   ├── domain
+                                │   |   ├── __init__.py
+                                │   |   ├── enums
+                                │   |   ├── exceptions
+                                │   |   ├── entities
+                                │   |   ├── repository
+                                │   └── application
+                                │   │   ├── __init__.py
+                                │   │   ├── services
+                                │   │   └── use cases
+                                │   └── infrastrutucure
+                                │   │   ├── __init__.py
+                                │   │   ├── database
+                                │   │   ├── schemas
+                                │   │   ├── security
+                                │   │   ├── orm
+                                │   │   ├── repository
+                                │   │   └── users.py
+                                │   └── interface
+                                │   |   ├── __init__.py
+                                │   |   ├── routes
+                                │   |   ├── controller
+                                │   |   ├── static
+                                │   |   ├── templates
+                                │   |   └── admin.py
+
+                            </code>
+                        </pre>
 
                     </article>
 
