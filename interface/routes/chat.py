@@ -5,6 +5,7 @@ from application.services.ChatService import ChatServices
 from infrastructure.repository.SQLAlchemy.ChatRepository import ChatRepositoryImpl as cri
 from infrastructure.schemas import schemas
 from infrastructure.database import database 
+import application.usecases.oauth2 as auth
 from sqlalchemy.orm import Session
 
 router = APIRouter(
@@ -15,13 +16,13 @@ router = APIRouter(
 get_db = database.get_db
 
 @router.post('/')
-def create_chat(request: schemas.ChatRequest, db: Session = Depends(get_db)):
+def create_chat(request: schemas.ChatRequest, db: Session = Depends(get_db), current_user: schemas.User = Depends(auth.get_current_user)):
     chatRepository = cri(db)
 
     return ChatServices.create_chat(request, chatRepository)
 
 @router.get('/{id}', response_model=schemas.Chat)
-def get_by_id(id: int, db: Session = Depends(get_db)):
+def get_by_id(id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(auth.get_current_user)):
     chatRepository = cri(db)
 
     return ChatServices.get_by_id(id, chatRepository)
